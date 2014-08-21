@@ -1,37 +1,27 @@
 'BriteCore':
   'title': 'BriteCore'
   'paths': [
-    '/Users/benhayden/Sites/britecore'
+    '/Users/scottblevins/Sites/britecore'
   ]
 'DotFiles':
   'title': 'DotFiles'
   'paths': [
-    '/Users/benhayden/DotFiles'
+    '/Users/scottblevins/repos/DotFiles'
   ]
 'DevOps':
   'title': 'DevOps'
   'paths': [
-    '/Users/benhayden/github/DevOps'
+    '/Users/scottblevins/github/DevOps'
   ]
 'Go-IWS':
   'title': 'Go-IWS'
   'paths': [
-    '/Users/benhayden/Documents/go-zone/src/github.com/IntuitiveWebSolutions/go-iws'
+    '/Users/scottblevins/Documents/go-zone/src/github.com/IntuitiveWebSolutions/go-iws'
   ]
-'BriteCore-Up':
-  'title': 'BriteCore-Up'
+'Britecore-Up':
+  'title': 'Britecore-Up'
   'paths': [
-    '/Users/benhayden/BC-Up'
-  ]
-'CalvaryAG':
-  'title': 'CalvaryAG'
-  'paths': [
-    '/Users/benhayden/Sites/calvaryag'
-  ]
-'LeonaMay':
-  'title': 'LeonaMay'
-  'paths': [
-    '/Users/benhayden/Sites/leonamay'
+    '/Users/scottblevins/repos/BriteCore-Up'
   ]
 'debugger-lines':
   'title': 'debugger-lines'
