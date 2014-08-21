@@ -1,0 +1,56 @@
+'editor':
+  'tabLength': 4
+  'preferredLineLength': 100
+'exception-reporting':
+  'userId': 'cce2c809-ed67-5c34-ab72-3fbf2c7c50c3'
+'welcome':
+  'showOnStartup': false
+'metrics':
+  'userId': '8c121934118f3f6ee8123b126ea3d7b8a75482a0'
+'whitespace': {}
+'project-manager':
+  'sortByTitle': true
+  'environmentSpecificProjects': true
+'go-plus':
+  'goPath': '~/Documents/go-zone'
+'linter':
+  'lintOnChange': false
+'linter-shellcheck':
+  'shellcheckExecutablePath': '/usr/local/bin'
+'linter-flake8':
+  'maxLineLength': 200
+  'ignoreErrorCodes': [
+    'E121'
+    'E122'
+    'E125'
+    'E126'
+    'E127'
+    'E128'
+    'E222'
+    'E226'
+    'E231'
+    'E251'
+    'E261'
+    'E262'
+    'E302'
+    'E303'
+    'E711'
+    'E712'
+  ]
+  'executableDir': '/usr/local/bin'
+'core':
+  'ignoredNames': [
+    '.git'
+    '.hg'
+    '.svn'
+    '.DS_Store'
+    'Thumbs.db'
+    '*.png'
+    '*.jpg'
+    '*.gif'
+  ]
+'tree-view':
+  'hideVcsIgnoredFiles': true
+  'hideIgnoredNames': true
+'debugger-lines':
+  'python': 'import pudb; pudb.set_trace()'

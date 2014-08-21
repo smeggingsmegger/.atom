@@ -1,0 +1,27 @@
+{
+  "name": "language-generic-config",
+  "version": "0.1.3",
+  "description": "Provides basic syntax highlighting for configuration files that are just composed of comments or non-comments",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lee-dohm/language-generic-config"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.60.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "readme": "# Generic Config Language\n\nProvides basic syntax highlighting for configuration files that are just composed of comments or non-comments with no particular structure, like `.gitignore` files.\n\n![Sample configuration](https://raw.githubusercontent.com/lee-dohm/language-generic-config/master/sample.png)\n\n## Notes\n\nThe package currently supports lines that begin with `#` or `;` as comments.\n\n## Copyright\n\nCopyright &copy; 2014 by [Lee Dohm](http://www.lee-dohm.com) and [Lifted Studios](http://www.liftedstudios.com). See [LICENSE](https://github.com/lee-dohm/language-generic-config/blob/master/LICENSE.md) for details.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/lee-dohm/language-generic-config/issues"
+  },
+  "homepage": "https://github.com/lee-dohm/language-generic-config",
+  "_id": "language-generic-config@0.1.3",
+  "dist": {
+    "shasum": "17cccc688e25221512eb9b44a8f0d3ae03855e5c"
+  },
+  "_resolved": "/var/folders/k_/knkglmdx5vl0bhvq450rxg5m0000gp/T/d-114721-83285-1v1pn3m/package.tgz",
+  "_from": "/var/folders/k_/knkglmdx5vl0bhvq450rxg5m0000gp/T/d-114721-83285-1v1pn3m/package.tgz"
+}
