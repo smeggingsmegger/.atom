@@ -2,11 +2,11 @@
   'tabLength': 4
   'preferredLineLength': 100
 'exception-reporting':
-  'userId': 'cce2c809-ed67-5c34-ab72-3fbf2c7c50c3'
+  'userId': 'a2096af3-6d2e-fe40-3f2a-295b0bf2ebef'
 'welcome':
   'showOnStartup': false
 'metrics':
-  'userId': '8c121934118f3f6ee8123b126ea3d7b8a75482a0'
+  'userId': 'aafc62f5b2e88f646d3073eb66eee728a07a1290'
 'whitespace': {}
 'project-manager':
   'sortByTitle': true
