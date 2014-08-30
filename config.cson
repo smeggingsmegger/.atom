@@ -16,7 +16,7 @@
 'linter':
   'lintOnChange': false
 'linter-shellcheck':
-  'shellcheckExecutablePath': '/usr/local/bin'
+  'shellcheckExecutablePath': '/usr/local/Cellar/shellcheck/0.3.2_1/bin'
 'linter-flake8':
   'maxLineLength': 200
   'ignoreErrorCodes': [
