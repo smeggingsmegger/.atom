@@ -54,3 +54,5 @@
   'hideIgnoredNames': true
 'debugger-lines':
   'python': 'import pudb; pudb.set_trace()'
+'vim-mode':
+  'startInInsertMode': true
