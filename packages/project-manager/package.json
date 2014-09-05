@@ -1,7 +1,7 @@
 {
   "name": "project-manager",
   "main": "./lib/project-manager",
-  "version": "1.8.0",
+  "version": "1.8.2",
   "description": "Project Manager for easy access and switching between projects in Atom.",
   "repository": {
     "type": "git",
@@ -20,19 +20,18 @@
   },
   "dependencies": {
     "season": "1.x",
-    "underscore-plus": "1.5.1",
-    "pathwatcher": "^2.0"
+    "underscore-plus": "1.5.1"
   },
-  "readme": "# Project Manager\n\n![Project Manager](https://raw.github.com/danielbrodin/atom-project-manager/master/project-manager.gif)\n\nA package for saving your projects for fast and easy access.\n\n## Installation\n```sh\napm install project-manager\n```\nor find it in the Packages tab under settings\n\n## Usage\nAll commands can also be found in the Packages menu\n### List projects\n`ctrl-cmd-p` (mac) / `ctrl-shift-alt-p` (win & linux) or **Project Manager** in the Command Palette.\n\n### Save project\n**Project Manager: Save Project** in the Command Palette and write the title you want to save the project as.\n\n### Edit projects\nAll projects are saved in a `.cson` file which you can easily reach by searching for **Project Manager: Edit Projects** in the Command Palette.\n\n## Project Settings\n### `settings:`\nUnder settings you can set everything that you can have in the `config.cson` file which is what you see under the settings view.\nThe formatting should be as follows:\n```\n'settings':\n  'editor.tabLength': 2\n  'project-manager.showPath': true\n```\nThe settings will be updated on change, but can also manually be done from the command palette with **Project Manager: Reload Project Settings**\n\n### `icon:`\nThis changes the icon displayed next to the project title in the list view. The icon is class-based, so you can either use the classes already provided by Atom like `icon-squirrel` or make your own class (target `:before`). The GitHub [octicon](https://github.com/styleguide/css/7.0) font is available to use, and most, if not all classes, just replace `octicon-` with `icon-`.\n\n### Example\n```CoffeeScript\n'Project Manager':\n  'title': 'Project Manager'\n  'icon': 'icon-squirrel'\n  'paths': [\n    '/path/to/project-manager'\n  ]\n  'settings':\n    'editor.tabLength': 2\n    'editor.showIndentGuide': false\n    'project-manager:showPath': true\n```\n\n## Package Settings\n**Show Path:** Shows the path in the list view\n\n**Close Current:** Closes the current window before opening the new project\n\n**Environment Specific Projects:** Use `projects.[hostname].cson` instead of `projects.cson`\n\n**Sort By Title:** Sorts the projects list by title in ascending order",
+  "readme": "# Project Manager\n\n![Project Manager](https://raw.github.com/danielbrodin/atom-project-manager/master/project-manager.gif)\n\nA package for saving your projects for fast and easy access.\n\n## Installation\n```sh\napm install project-manager\n```\nor find it in the Packages tab under settings\n\n## Usage\nAll commands can also be found in the Packages menu\n### List projects\n`ctrl-cmd-p` (mac) / `ctrl-shift-alt-p` (win & linux) or **Project Manager** in the Command Palette.\n\n### Save project\n**Project Manager: Save Project** in the Command Palette and write the title you want to save the project as.\n\n### Edit projects\nAll projects are saved in a `.cson` file which you can easily reach by searching for **Project Manager: Edit Projects** in the Command Palette.\n\n## Project Settings\n### `settings:`\nUnder settings you can set everything that you can have in the `config.cson` file which is what you see under the settings view.\nThe formatting should be as follows:\n```\n'settings':\n  'editor.tabLength': 2\n  'project-manager.showPath': true\n```\nThe settings will be updated on change, but can also manually be done from the command palette with **Project Manager: Reload Project Settings**\n\n### `devMode:`\nWill open the project in dev mode. The API for this doesn't work perfectly though so if you try to switch to a project that is already open in dev mode, a new window will open.\n\n### `icon:`\nThis changes the icon displayed next to the project title in the list view. The icon is class-based, so you can either use the classes already provided by Atom like `icon-squirrel` or make your own class (target `:before`). The GitHub [octicon](https://github.com/styleguide/css/7.0) font is available to use, and most, if not all classes, just replace `octicon-` with `icon-`.\n\n### Example\n```CoffeeScript\n'Project Manager':\n  'title': 'Project Manager'\n  'icon': 'icon-squirrel'\n  'devMode': true\n  'paths': [\n    '/path/to/project-manager'\n  ]\n  'settings':\n    'editor.tabLength': 2\n    'editor.showIndentGuide': false\n    'project-manager:showPath': true\n```\n\n## Package Settings\n**Show Path:** Shows the path in the list view\n\n**Close Current:** Closes the current window before opening the new project\n\n**Environment Specific Projects:** Use `projects.[hostname].cson` instead of `projects.cson`\n\n**Sort By Title:** Sorts the projects list by title in ascending order",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/danielbrodin/atom-project-manager/issues"
   },
   "homepage": "https://github.com/danielbrodin/atom-project-manager",
-  "_id": "project-manager@1.8.0",
+  "_id": "project-manager@1.8.2",
   "dist": {
-    "shasum": "7eddd5816eac72147e1b6bd331dad5529aa7905f"
+    "shasum": "f1d5e4ad4a4bd8daeb60ad33ec5dac8af4d6e3d3"
   },
-  "_resolved": "/var/folders/dg/vb2nf1jj5y5gpflxcbtfl0pm0000gn/T/d-11482-70314-12bi2ky/package.tgz",
-  "_from": "/var/folders/dg/vb2nf1jj5y5gpflxcbtfl0pm0000gn/T/d-11482-70314-12bi2ky/package.tgz"
+  "_resolved": "/var/folders/dg/vb2nf1jj5y5gpflxcbtfl0pm0000gn/T/d-11482-77270-1bk8eo2/package.tgz",
+  "_from": "/var/folders/dg/vb2nf1jj5y5gpflxcbtfl0pm0000gn/T/d-11482-77270-1bk8eo2/package.tgz"
 }

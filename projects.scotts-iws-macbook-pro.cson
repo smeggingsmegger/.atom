@@ -1,1 +1,20 @@
-{}
+'BriteCore':
+  'title': 'BriteCore'
+  'paths': [
+    '/Users/scottblevins/Sites/britecore'
+  ]
+'Impression':
+  'title': 'Impression'
+  'paths': [
+    '/Users/scottblevins/repos/impression'
+  ]
+'BriteIdeas':
+  'title': 'BriteIdeas'
+  'paths': [
+    '/Users/scottblevins/repos/BriteIdeas'
+  ]
+'PyBambooHR':
+  'title': 'PyBambooHR'
+  'paths': [
+    '/Users/scottblevins/repos/PyBambooHR'
+  ]

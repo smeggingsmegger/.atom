@@ -27,7 +27,7 @@ module.exports =
     atom.workspaceView.command 'project-manager:toggle', =>
       @createProjectManagerView(state).toggle(@)
     atom.workspaceView.command 'project-manager:edit-projects', =>
-      @editProjects()
+      atom.workspaceView.open @file()
     atom.workspaceView.command 'project-manager:reload-project-settings', =>
       @loadSettings()
 
@@ -61,11 +61,8 @@ module.exports =
             console.log "Error: Could not create #{@file()} - #{error}"
 
   subscribeToProjectsFile: ->
-    PathWatcher = require 'pathwatcher'
-    filePath = @file()
-    @pathWatcher.close() if @pathWatcher?
-
-    @pathWatcher = PathWatcher.watch filePath, (event, path) =>
+    @fileWatcher.close() if @fileWatcher?
+    @fileWatcher = fs.watch @file(), (event, filename) =>
       @loadSettings()
 
   loadSettings: ->
@@ -96,20 +93,15 @@ module.exports =
     projects[project.title] = project
     CSON.writeFileSync(@file(), projects)
 
-  openProject: ({title, paths}) ->
+  openProject: ({title, paths, devMode}) ->
     atom.open options =
       pathsToOpen: paths
+      devMode: devMode
 
     if atom.config.get('project-manager.closeCurrent')
       setTimeout ->
         atom.close()
       , 200
-
-  editProjects: ->
-    config =
-      title: 'Config'
-      paths: [@file()]
-    @openProject(config)
 
   createProjectManagerView: (state) ->
     unless @projectManagerView?
