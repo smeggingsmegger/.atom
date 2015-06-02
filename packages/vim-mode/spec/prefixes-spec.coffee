@@ -1,22 +1,21 @@
 helpers = require './spec-helper'
 
 describe "Prefixes", ->
-  [editor, editorView, vimState] = []
+  [editor, editorElement, vimState] = []
 
   beforeEach ->
     vimMode = atom.packages.loadPackage('vim-mode')
     vimMode.activateResources()
 
-    helpers.cacheEditor editorView, (view) ->
-      editorView = view
-      editor = editorView.editor
-
-      vimState = editorView.vimState
+    helpers.getEditorElement (element) ->
+      editorElement = element
+      editor = editorElement.getModel()
+      vimState = editorElement.vimState
       vimState.activateCommandMode()
       vimState.resetCommandMode()
 
   keydown = (key, options={}) ->
-    options.element ?= editorView[0]
+    options.element ?= editorElement
     helpers.keydown(key, options)
 
   describe "Repeat", ->
@@ -60,7 +59,7 @@ describe "Prefixes", ->
         keydown("2")
         keydown("w")
 
-        expect(editor.getCursorScreenPosition()).toEqual [0, 8]
+        expect(editor.getCursorScreenPosition()).toEqual [0, 9]
 
   describe "Register", ->
     describe "the a register", ->
@@ -72,6 +71,27 @@ describe "Prefixes", ->
         vimState.setRegister('a', text: 'content')
         vimState.setRegister('a', text: 'new content')
         expect(vimState.getRegister("a").text).toEqual 'new content'
+
+    describe "the B register", ->
+      it "saves a value for future reading", ->
+        vimState.setRegister('B', text: 'new content')
+        expect(vimState.getRegister("b").text).toEqual 'new content'
+        expect(vimState.getRegister("B").text).toEqual 'new content'
+
+      it "appends to a value previously in the register", ->
+        vimState.setRegister('b', text: 'content')
+        vimState.setRegister('B', text: 'new content')
+        expect(vimState.getRegister("b").text).toEqual 'contentnew content'
+
+      it "appends linewise to a linewise value previously in the register", ->
+        vimState.setRegister('b', {type: 'linewise', text: 'content\n'})
+        vimState.setRegister('B', text: 'new content')
+        expect(vimState.getRegister("b").text).toEqual 'content\nnew content\n'
+
+      it "appends linewise to a character value previously in the register", ->
+        vimState.setRegister('b', text: 'content')
+        vimState.setRegister('B', {type: 'linewise', text: 'new content\n'})
+        expect(vimState.getRegister("b").text).toEqual 'content\nnew content\n'
 
 
     describe "the * register", ->
@@ -116,7 +136,7 @@ describe "Prefixes", ->
 
     describe "the % register", ->
       beforeEach ->
-        spyOn(editor, 'getUri').andReturn('/Users/atom/known_value.txt')
+        spyOn(editor, 'getURI').andReturn('/Users/atom/known_value.txt')
 
       describe "reading", ->
         it "returns the filename of the current editor", ->

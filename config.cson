@@ -1,58 +1,79 @@
-'editor':
-  'tabLength': 4
-  'preferredLineLength': 100
-'exception-reporting':
-  'userId': 'a2096af3-6d2e-fe40-3f2a-295b0bf2ebef'
-'welcome':
-  'showOnStartup': false
-'metrics':
-  'userId': 'aafc62f5b2e88f646d3073eb66eee728a07a1290'
-'whitespace': {}
-'project-manager':
-  'sortByTitle': true
-  'environmentSpecificProjects': true
-'go-plus':
-  'goPath': '~/Documents/go-zone'
-'linter':
-  'lintOnChange': false
-'linter-shellcheck':
-  'shellcheckExecutablePath': '/usr/local/Cellar/shellcheck/0.3.2_1/bin'
-'linter-flake8':
-  'maxLineLength': 200
-  'ignoreErrorCodes': [
-    'E121'
-    'E122'
-    'E125'
-    'E126'
-    'E127'
-    'E128'
-    'E222'
-    'E226'
-    'E231'
-    'E251'
-    'E261'
-    'E262'
-    'E302'
-    'E303'
-    'E711'
-    'E712'
-  ]
-  'executableDir': '/usr/local/bin'
-'core':
-  'ignoredNames': [
-    '.git'
-    '.hg'
-    '.svn'
-    '.DS_Store'
-    'Thumbs.db'
-    '*.png'
-    '*.jpg'
-    '*.gif'
-  ]
-'tree-view':
-  'hideVcsIgnoredFiles': true
-  'hideIgnoredNames': true
-'debugger-lines':
-  'python': 'import pudb; pudb.set_trace()'
-'vim-mode':
-  'startInInsertMode': true
+"*":
+  editor:
+    tabLength: 4
+    preferredLineLength: 100
+    invisibles:
+      {}
+  "exception-reporting":
+    userId: "a2096af3-6d2e-fe40-3f2a-295b0bf2ebef"
+  welcome:
+    showOnStartup: false
+  metrics:
+    userId: "aafc62f5b2e88f646d3073eb66eee728a07a1290"
+  whitespace:
+    {}
+  "project-manager":
+    sortByTitle: true
+    environmentSpecificProjects: true
+  "go-plus":
+    goPath: "~/Documents/go-zone"
+  linter:
+    lintOnChange: false
+  "linter-shellcheck":
+    shellcheckExecutablePath: "/usr/local/Cellar/shellcheck/0.3.2_1/bin"
+  "linter-flake8":
+    maxLineLength: 200
+    ignoreErrorCodes: [
+      "E121"
+      "E122"
+      "E125"
+      "E126"
+      "E127"
+      "E128"
+      "E222"
+      "E226"
+      "E231"
+      "E251"
+      "E261"
+      "E262"
+      "E302"
+      "E303"
+      "E711"
+      "E712"
+    ]
+    executableDir: "/usr/local/bin"
+  core:
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      "Thumbs.db"
+      "*.png"
+      "*.jpg"
+      "*.gif"
+    ]
+    themes: [
+      "atom-dark-ui"
+      "monokai"
+    ]
+    disabledPackages: [
+      "filetype-color"
+    ]
+  "tree-view":
+    hideVcsIgnoredFiles: true
+    hideIgnoredNames: true
+  "debugger-lines":
+    python: "import pudb; pudb.set_trace()"
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+  "linter-jshint":
+    {}
+  "linter-csslint":
+    {}
+  "filetype-color":
+    enabled: "false"
+  "line-jumper":
+    numberOfLines: 5
+  "word-jumper":
+    {}

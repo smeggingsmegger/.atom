@@ -1,49 +1,38 @@
-linterPath = atom.packages.getLoadedPackage('linter').path
-Linter = require "#{linterPath}/lib/linter"
-findFile = require "#{linterPath}/lib/util"
+linterPackage = atom.packages.getLoadedPackage('linter')
 
-class LinterCoffeelint extends Linter
-  # The syntax that the linter handles. May be a string or
-  # list/tuple of strings. Names should be all lowercase.
-  @syntax: ['source.coffee', 'source.litcoffee']
+if linterPackage
+  Core = require('./core.coffee')
+  Linter = require "#{linterPackage.path}/lib/linter"
+  path = require('path')
+  resolve = require('resolve').sync
 
-  # A string, list, tuple or callable that returns a string, list or tuple,
-  # containing the command line (with arguments) used to lint.
-  cmd: 'coffeelint --reporter jslint'
 
-  linterName: 'coffeelint'
+  class LinterCoffeelint extends Linter
+    @syntax: Core.scopes
 
-  # A regex pattern used to extract information from the executable's output.
-  regex:
-    '<issue line="(?<line>\\d+)"' +
-    # '.+?lineEnd="\\d+"' +
-    '.+?reason="\\[((?<error>error)|(?<warning>warn))\\] (?<message>.+?)"'
+    linterName: 'coffeelint'
 
-  regexFlags: 's'
+    lintFile: (filePath, callback) =>
+      filename = path.basename filePath
+      origPath = path.join @cwd, filename
+      source = @editor.getText()
+      scopeName = @editor.getGrammar().scopeName
 
-  isNodeExecutable: yes
+      callback(Core.lint(filePath, origPath, source, scopeName).map(@transform))
 
-  configPath: null
+    transform: (m) =>
+      message = m.message
+      if m.context
+        message += ". #{m.context}"
 
-  constructor: (editor) ->
-    super(editor)
+      return @createMessage {
+        line: m.lineNumber,
+        # None of the rules currently return a column, but they may in the
+        # future.
+        col: m.column,
+        error: m.level is 'error'
+        warning: m.level is 'warn'
+        message: "#{message}. (#{m.rule})"
+      }
 
-    atom.config.observe 'linter-coffeelint.coffeelintConfigPath', =>
-      @configPath = atom.config.get 'linter-coffeelint.coffeelintConfigPath'
-
-    if configPathLocal = findFile(@cwd, ['coffeelint.json'])
-      @cmd += " -f #{configPathLocal}"
-    else if @configPath
-      @cmd += " -f #{@configPath}"
-
-    atom.config.observe 'linter-coffeelint.coffeelintExecutablePath', =>
-      @executablePath = atom.config.get 'linter-coffeelint.coffeelintExecutablePath'
-
-    if editor.getGrammar().scopeName is 'source.litcoffee'
-      @cmd += ' --literate'
-
-  destroy: ->
-    atom.config.unobserve 'linter-coffeelint.coffeelintExecutablePath'
-    atom.config.unobserve 'linter-coffeelint.coffeelintConfigPath'
-
-module.exports = LinterCoffeelint
+  module.exports = LinterCoffeelint

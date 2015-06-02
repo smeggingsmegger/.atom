@@ -13,7 +13,10 @@ or find it in the Packages tab under settings
 ## Usage
 All commands can also be found in the Packages menu
 ### List projects
-`ctrl-cmd-p` (mac) / `ctrl-shift-alt-p` (win & linux) or **Project Manager** in the Command Palette.
+`ctrl-cmd-p` (mac) / `alt-shift-P` (win & linux) or **Project Manager** in the Command Palette.
+
+You can filter result by `title`, `group` and `template`.
+`group: atom` would list all projects with the group `atom`. Default is `title`
 
 ### Save project
 **Project Manager: Save Project** in the Command Palette and write the title you want to save the project as.
@@ -36,28 +39,40 @@ The settings will be updated on change, but can also manually be done from the c
 Will open the project in dev mode. The API for this doesn't work perfectly though so if you try to switch to a project that is already open in dev mode, a new window will open.
 
 ### `icon:`
-This changes the icon displayed next to the project title in the list view. The icon is class-based, so you can either use the classes already provided by Atom like `icon-squirrel` or make your own class (target `:before`). The GitHub [octicon](https://github.com/styleguide/css/7.0) font is available to use, and most, if not all classes, just replace `octicon-` with `icon-`.
+This changes the icon displayed next to the project title in the list view. The icon is class-based, so you can either use the classes already provided by Atom like `icon-squirrel` or make your own class (target `:before`). The GitHub [octicons](https://octicons.github.com/) font is available to use, and most, if not all classes, just replace `octicon-` with `icon-`.
+
+### `template:`
+You can specify a template in the `projects.cson` file to share settings between projects. The settings will merge so you can still specify project specific settings.
+
+### `group:`
+You can specify a group that the project belongs to and then sort the projects list after group.
 
 ### Example
-```CoffeeScript
+```coffeeScript
 'Project Manager':
   'title': 'Project Manager'
-  'icon': 'icon-squirrel'
   'devMode': true
+  'group': 'Atom'
+  'template': 'coffeescript-template'
   'paths': [
     '/path/to/project-manager'
   ]
   'settings':
-    'editor.tabLength': 2
     'editor.showIndentGuide': false
     'project-manager:showPath': true
+
+'coffeescript-template':
+  'icon': 'icon-coffeescript'
+  'settings':
+    'editor.tabLength': 2
+    'editor.preferredLineLength': 80
 ```
 
 ## Package Settings
 **Show Path:** Shows the path in the list view
 
-**Close Current:** Closes the current window before opening the new project
+~~**Close Current:** Closes the current window before opening the new project~~ *(Currently disabled)*
 
 **Environment Specific Projects:** Use `projects.[hostname].cson` instead of `projects.cson`
 
-**Sort By Title:** Sorts the projects list by title in ascending order
+**Sort By:** Sorts the projects list by selected option

@@ -1,28 +1,38 @@
-var View,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) {
-        for (var key in parent) {
-            if (__hasProp.call(parent, key)) child[key] = parent[key];
-        }
 
-        function ctor() {
-            this.constructor = child;
-        }
-        ctor.prototype = parent.prototype;
-        child.prototype = new ctor();
-        child.__super__ = parent.prototype;
-        return child;
-    };
-
-View = require('atom').View;
-var observer;
+var observerTree;
 var observerPanes;
+var timeoutTree;
+var timeoutPanes;
+var timeoutTreeObserver;
+var timeoutPanesObserver;
+var View      = require('atom').View;
+var __hasProp = {}.hasOwnProperty;
+var __extends = function(child, parent) {
+    for (var key in parent) {
+        if (__hasProp.call(parent, key)) child[key] = parent[key];
+    }
 
+    function ctor() {
+        this.constructor = child;
+    }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor();
+    child.__super__ = parent.prototype;
+    return child;
+};
+
+var observerConfig = {
+    attributes: true,
+    childList: true,
+    characterData: false,
+    subtree: true
+};
 
 module.exports = FiletypeColorView = (function(_super) {
     __extends(FiletypeColorView, _super);
 
     function FiletypeColorView() {
+
         return FiletypeColorView.__super__.constructor.apply(this, arguments);
     }
 
@@ -38,12 +48,30 @@ module.exports = FiletypeColorView = (function(_super) {
     };
 
     FiletypeColorView.prototype.initialize = function(serializeState) {
+        var autoInit = atom.config.get('filetype-color.enabled');
+
+        if(!autoInit) {
+            atom.config.set('filetype-color.enabled', 'false');
+            autoInit = 'false';
+        }
+
+        if(autoInit == 'true') {
+            var self = this;
+            setTimeout(function(){
+                self.toggle();
+            }, 1000);
+        }
+
         return atom.workspaceView.command("filetype-color:toggle", (function(_this) {
             return function() {
                 return _this.toggle();
             };
         })(this));
     };
+
+    FiletypeColorView.prototype.activate = function() {};
+
+    FiletypeColorView.prototype.deactivate = function() {};
 
     FiletypeColorView.prototype.serialize = function() {};
 
@@ -52,18 +80,24 @@ module.exports = FiletypeColorView = (function(_super) {
     };
 
     FiletypeColorView.prototype.toggle = function() {
+
         if (this.hasParent()) {
+
             this.clearAll();
             this.clearAllPanes();
-            if (observer) {
-                observer.disconnect();
+
+            if (observerTree) {
+                observerTree.disconnect();
                 observerPanes.disconnect();
             }
+
+            atom.config.set('filetype-color.enabled', 'false');
+
             return this.detach();
+
         } else {
 
-            if(document.querySelector('.tree-view'))
-            {
+            if(document.querySelector('.tree-view')) {
                 this.colorAll();
                 this.createTreeViewObserver();
             }
@@ -71,56 +105,72 @@ module.exports = FiletypeColorView = (function(_super) {
             this.colorAllPanes();
             this.createPaneViewObserver();
 
+            atom.config.set('filetype-color.enabled', 'true');
+
             return atom.workspaceView.append(this);
         }
     };
 
     FiletypeColorView.prototype.createPaneViewObserver = function(mutation) {
-        var target = document.querySelector('.panes .pane ul');
-        var config = {
-            attributes: true,
-            childList: true,
-            characterData: false
-        };
-        var bubbles = false;
+
+        var targetPanes = document.querySelector('.panes .pane ul');
         var self = this;
+
         observerPanes = new WebKitMutationObserver(function(mutations) {
+
+            observerPanes.disconnect();
+
             mutations.forEach(function() {
+
                 var that = self;
-                setTimeout(function() {
+
+                clearTimeout(timeoutPanes);
+
+                timeoutPanes = setTimeout(function() {
                     that.colorAllPanes();
-                }, 200);
+                }, 100);
+
             });
+
+            clearTimeout(timeoutPanesObserver);
+
+            timeoutPanesObserver = setTimeout(function() {
+                observerPanes.observe(targetPanes, observerConfig);
+            }, 150);
         });
 
-        observerPanes.observe(target, {
-            attributes: true,
-            subtree: bubbles
-        });
+        observerPanes.observe(targetPanes, observerConfig);
     };
 
     FiletypeColorView.prototype.createTreeViewObserver = function(mutation) {
-        var target = document.querySelector('.tree-view');
-        var config = {
-            attributes: true,
-            childList: true,
-            characterData: false
-        };
-        var bubbles = false;
+
+        var targetTree = document.querySelector('.tree-view');
         var self = this;
-        observer = new WebKitMutationObserver(function(mutations) {
+
+        observerTree = new WebKitMutationObserver(function(mutations) {
+
+            observerTree.disconnect();
+
             mutations.forEach(function() {
+
                 var that = self;
-                setTimeout(function() {
+
+                clearTimeout(timeoutTree);
+
+                timeoutTree = setTimeout(function() {
                     that.colorAll();
-                }, 200);
+                }, 100);
+
             });
+
+            clearTimeout(timeoutTreeObserver);
+
+            timeoutTreeObserver = setTimeout(function() {
+                observerTree.observe(targetTree, observerConfig);
+            }, 150);
         });
 
-        observer.observe(target, {
-            attributes: true,
-            subtree: bubbles
-        });
+        observerTree.observe(targetTree, observerConfig);
     };
 
     FiletypeColorView.prototype.attrModified = function(mutation) {
@@ -132,6 +182,7 @@ module.exports = FiletypeColorView = (function(_super) {
     };
 
     FiletypeColorView.prototype.colorAll = function() {
+
         treeView = document.querySelector(".tree-view");
         elements = treeView.querySelectorAll("li.file span");
 
@@ -139,13 +190,14 @@ module.exports = FiletypeColorView = (function(_super) {
             var el = elements[i];
             this.colorElement(el);
         }
+
     };
 
     FiletypeColorView.prototype.colorAllPanes = function() {
 
         paneView = document.querySelector(".panes");
         elements = paneView.querySelectorAll("li .title");
-        console.log(elements);
+
         for (var i = 0; i < elements.length; i++) {
             var el = elements[i];
             this.colorElement(el);
@@ -179,13 +231,14 @@ module.exports = FiletypeColorView = (function(_super) {
         var fileName = el.innerHTML;
 
         var ext = fileName.split('.').pop();
-        var className = "filetype-color-" + ext;
+        var className = "filetype-color filetype-color-" + ext;
         this.clearElement(el);
         el.className = el.className + " " + className;
     };
 
     FiletypeColorView.prototype.clearElement = function(el) {
         el.className = el.className.replace(/\sfiletype-color-[\S]+/, '');
+        el.className = el.className.replace('filetype-color', '');
     };
 
     return FiletypeColorView;

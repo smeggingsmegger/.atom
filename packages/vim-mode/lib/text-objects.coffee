@@ -1,3 +1,6 @@
+{Range} = require 'atom'
+AllWhitespace = /^\s$/
+
 class TextObject
   constructor: (@editor, @state) ->
 
@@ -6,7 +9,7 @@ class TextObject
 
 class SelectInsideWord extends TextObject
   select: ->
-    @editor.selectWord()
+    @editor.selectWordsContainingCursors()
     [true]
 
 # SelectInsideQuotes and the next class defined (SelectInsideBrackets) are
@@ -17,47 +20,64 @@ class SelectInsideQuotes extends TextObject
   constructor: (@editor, @char, @includeQuotes) ->
 
   findOpeningQuote: (pos) ->
+    start = pos.copy()
     pos = pos.copy()
     while pos.row >= 0
-      line = @editor.lineForBufferRow(pos.row)
-      pos.column = line.length - 1 if pos.column == -1
+      line = @editor.lineTextForBufferRow(pos.row)
+      pos.column = line.length - 1 if pos.column is -1
       while pos.column >= 0
-        if line[pos.column] == @char
-          return pos if pos.column == 0 or line[pos.column - 1] != '\\'
+        if line[pos.column] is @char
+          if pos.column is 0 or line[pos.column - 1] isnt '\\'
+            if @isStartQuote(pos)
+              return pos
+            else
+              return @lookForwardOnLine(start)
         -- pos.column
       pos.column = -1
       -- pos.row
+    @lookForwardOnLine(start)
+
+  isStartQuote: (end) ->
+    line = @editor.lineTextForBufferRow(end.row)
+    numQuotes = line.substring(0, end.column + 1).replace( "'#{@char}", '').split(@char).length - 1
+    numQuotes % 2
+
+  lookForwardOnLine: (pos) ->
+    line = @editor.lineTextForBufferRow(pos.row)
+
+    index = line.substring(pos.column).indexOf(@char)
+    if index >= 0
+      pos.column += index
+      return pos
+    null
 
   findClosingQuote: (start) ->
     end = start.copy()
     escaping = false
 
     while end.row < @editor.getLineCount()
-      endLine = @editor.lineForBufferRow(end.row)
+      endLine = @editor.lineTextForBufferRow(end.row)
       while end.column < endLine.length
-        if endLine[end.column] == '\\'
+        if endLine[end.column] is '\\'
           ++ end.column
-        else if endLine[end.column] == @char
+        else if endLine[end.column] is @char
           -- start.column if @includeQuotes
           ++ end.column if @includeQuotes
-          @editor.expandSelectionsForward (selection) =>
-            selection.cursor.setBufferPosition start
-            selection.selectToBufferPosition end
-          return {select:[true], end:end}
+          return end
         ++ end.column
       end.column = 0
       ++ end.row
-
-    {select:[false], end:end}
+    return
 
   select: ->
-    start = @findOpeningQuote(@editor.getCursorBufferPosition())
-    return [false] unless start?
-
-    ++ start.column  # skip the opening quote
-
-    {select,end} = @findClosingQuote(start)
-    select
+    for selection in @editor.getSelections()
+      start = @findOpeningQuote(selection.cursor.getBufferPosition())
+      if start?
+        ++ start.column # skip the opening quote
+        end = @findClosingQuote(start)
+        if end?
+          selection.setBufferRange([start, end])
+      not selection.isEmpty()
 
 # SelectInsideBrackets and the previous class defined (SelectInsideQuotes) are
 # almost-but-not-quite-repeated code. They are different because of the depth
@@ -70,8 +90,8 @@ class SelectInsideBrackets extends TextObject
     pos = pos.copy()
     depth = 0
     while pos.row >= 0
-      line = @editor.lineForBufferRow(pos.row)
-      pos.column = line.length - 1 if pos.column == -1
+      line = @editor.lineTextForBufferRow(pos.row)
+      pos.column = line.length - 1 if pos.column is -1
       while pos.column >= 0
         switch line[pos.column]
           when @endChar then ++ depth
@@ -85,7 +105,7 @@ class SelectInsideBrackets extends TextObject
     end = start.copy()
     depth = 0
     while end.row < @editor.getLineCount()
-      endLine = @editor.lineForBufferRow(end.row)
+      endLine = @editor.lineTextForBufferRow(end.row)
       while end.column < endLine.length
         switch endLine[end.column]
           when @beginChar then ++ depth
@@ -93,27 +113,40 @@ class SelectInsideBrackets extends TextObject
             if -- depth < 0
               -- start.column if @includeBrackets
               ++ end.column if @includeBrackets
-              @editor.expandSelectionsForward (selection) =>
-                selection.cursor.setBufferPosition start
-                selection.selectToBufferPosition end
-              return {select:[true], end:end}
+              return end
         ++ end.column
       end.column = 0
       ++ end.row
-
-    {select:[false], end:end}
+    return
 
   select: ->
-    start = @findOpeningBracket(@editor.getCursorBufferPosition())
-    return [false] unless start?
-    ++ start.column  # skip the opening bracket
-    {select,end} = @findClosingBracket(start)
-    select
+    for selection in @editor.getSelections()
+      start = @findOpeningBracket(selection.cursor.getBufferPosition())
+      if start?
+        ++ start.column # skip the opening quote
+        end = @findClosingBracket(start)
+        if end?
+          selection.setBufferRange([start, end])
+      not selection.isEmpty()
 
 class SelectAWord extends TextObject
   select: ->
-    @editor.selectWord()
-    @editor.selectToBeginningOfNextWord()
-    [true]
+    for selection in @editor.getSelections()
+      selection.selectWord()
+      loop
+        endPoint = selection.getBufferRange().end
+        char = @editor.getTextInRange(Range.fromPointWithDelta(endPoint, 0, 1))
+        break unless AllWhitespace.test(char)
+        selection.selectRight()
+      true
 
-module.exports = {TextObject, SelectInsideWord, SelectInsideQuotes, SelectInsideBrackets, SelectAWord}
+class SelectInsideParagraph extends TextObject
+  constructor: (@editor, @inclusive) ->
+  select: ->
+    for selection in @editor.getSelections()
+      range = selection.cursor.getCurrentParagraphBufferRange()
+      if range?
+        selection.setBufferRange(range)
+      true
+
+module.exports = {TextObject, SelectInsideWord, SelectInsideQuotes, SelectInsideBrackets, SelectAWord, SelectInsideParagraph}

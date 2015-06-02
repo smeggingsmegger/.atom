@@ -1,11 +1,8 @@
 {
   "name": "filetype-color",
   "main": "./lib/filetype-color",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "Color codes file names in the side bar and pane view.",
-  "activationEvents": [
-    "filetype-color:toggle"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/sommerper/filetype-color"
@@ -21,10 +18,25 @@
     "url": "https://github.com/sommerper/filetype-color/issues"
   },
   "homepage": "https://github.com/sommerper/filetype-color",
-  "_id": "filetype-color@0.1.1",
-  "dist": {
-    "shasum": "92f8acfe323a0d5f9958f4765f4764e4a286e9f3"
-  },
-  "_resolved": "/var/folders/dg/vb2nf1jj5y5gpflxcbtfl0pm0000gn/T/d-114730-48676-3dtq4v/package.tgz",
-  "_from": "/var/folders/dg/vb2nf1jj5y5gpflxcbtfl0pm0000gn/T/d-114730-48676-3dtq4v/package.tgz"
+  "_id": "filetype-color@0.1.4",
+  "_shasum": "1d70eab6547df9b9c6b74ce799b273506b08e567",
+  "_resolved": "file:../d-11551-931-ckf8vh/package.tgz",
+  "_from": "../d-11551-931-ckf8vh/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".coffee": [
+        "lib/filetype-color-view.coffee",
+        "lib/filetype-color.coffee"
+      ],
+      ".js": [
+        "lib/filetype-color-view.js"
+      ],
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
 }

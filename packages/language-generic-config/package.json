@@ -1,27 +1,43 @@
 {
   "name": "language-generic-config",
-  "version": "0.1.3",
+  "author": {
+    "name": "Lee Dohm",
+    "email": "lee@lee-dohm.com"
+  },
+  "version": "0.2.0",
   "description": "Provides basic syntax highlighting for configuration files that are just composed of comments or non-comments",
+  "keywords": [
+    "generic",
+    "configuration",
+    "grammar",
+    "syntax"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/lee-dohm/language-generic-config"
   },
   "license": "MIT",
   "engines": {
-    "atom": ">0.60.0"
+    "atom": ">=0.196.0 <2.0.0"
   },
-  "dependencies": {},
-  "devDependencies": {},
-  "readme": "# Generic Config Language\n\nProvides basic syntax highlighting for configuration files that are just composed of comments or non-comments with no particular structure, like `.gitignore` files.\n\n![Sample configuration](https://raw.githubusercontent.com/lee-dohm/language-generic-config/master/sample.png)\n\n## Notes\n\nThe package currently supports lines that begin with `#` or `;` as comments.\n\n## Copyright\n\nCopyright &copy; 2014 by [Lee Dohm](http://www.lee-dohm.com) and [Lifted Studios](http://www.liftedstudios.com). See [LICENSE](https://github.com/lee-dohm/language-generic-config/blob/master/LICENSE.md) for details.\n",
+  "readme": "# Generic Config Language [![Dependency Status](https://david-dm.org/lee-dohm/language-generic-config.svg)](https://david-dm.org/lee-dohm/language-generic-config)\n\nProvides basic syntax highlighting for configuration files that are just composed of comments or non-comments with no particular structure, like `.gitignore` files.\n\n![Sample configuration](https://raw.githubusercontent.com/lee-dohm/language-generic-config/master/sample.png)\n\n## Notes\n\nThe package currently supports lines that begin with `#` or `;` as comments.\n\n## Copyright\n\nCopyright &copy; 2014-2015 by [Lee Dohm](http://www.lee-dohm.com) and [Lifted Studios](http://www.liftedstudios.com). See [LICENSE](https://github.com/lee-dohm/language-generic-config/blob/master/LICENSE.md) for details.\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/lee-dohm/language-generic-config/issues"
   },
   "homepage": "https://github.com/lee-dohm/language-generic-config",
-  "_id": "language-generic-config@0.1.3",
-  "dist": {
-    "shasum": "17cccc688e25221512eb9b44a8f0d3ae03855e5c"
-  },
-  "_resolved": "/var/folders/k_/knkglmdx5vl0bhvq450rxg5m0000gp/T/d-114721-83285-1v1pn3m/package.tgz",
-  "_from": "/var/folders/k_/knkglmdx5vl0bhvq450rxg5m0000gp/T/d-114721-83285-1v1pn3m/package.tgz"
+  "_id": "language-generic-config@0.2.0",
+  "_shasum": "5820d2315fa8c06a600cf5f505d83b6ada302b08",
+  "_resolved": "file:../d-11551-931-ik5mvw/package.tgz",
+  "_from": "../d-11551-931-ik5mvw/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
 }

@@ -1,0 +1,6 @@
+'atom-text-editor':
+  'shift-right': 'word-jumper:move-right'
+  'shift-left': 'word-jumper:move-left'
+
+  'alt-shift-right': 'word-jumper:select-right'
+  'alt-shift-left': 'word-jumper:select-left'

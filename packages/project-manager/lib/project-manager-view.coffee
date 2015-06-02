@@ -1,23 +1,45 @@
-{$, $$, SelectListView, View} = require 'atom'
+{$, $$, SelectListView, View} = require 'atom-space-pen-views'
 CSON = require 'season'
+_ = require 'underscore-plus'
 
 module.exports =
 class ProjectManagerView extends SelectListView
   projectManager: null
+  possibleFilterKeys: ['title', 'group', 'template']
   activate: ->
     new ProjectManagerView
 
   initialize: (serializeState) ->
     super
-    @addClass('project-manager overlay from-top')
+    @addClass('project-manager')
 
   serialize: ->
 
   getFilterKey: ->
-    'title'
+    filter = 'title'
+    input = @filterEditorView.getText()
+    inputArr = input.split(':')
 
-  destroy: ->
-    @detach()
+    if inputArr.length > 1 and inputArr[0] in @possibleFilterKeys
+      filter = inputArr[0]
+
+    return filter
+
+  getFilterQuery: ->
+    input = @filterEditorView.getText()
+    inputArr = input.split(':')
+
+    if inputArr.length > 1
+      input = inputArr[1]
+
+    return input
+
+  cancelled: ->
+    @hide()
+
+  confirmed: (project) ->
+    @projectManager.openProject(project)
+    @cancel()
 
   getEmptyMessage: (itemCount, filteredItemCount) =>
     if not itemCount
@@ -27,37 +49,45 @@ class ProjectManagerView extends SelectListView
 
   toggle: (projectManager) ->
     @projectManager = projectManager
-    if @hasParent()
-      @cancel()
+    if @panel?.isVisible()
+      @hide()
     else
-      @attach()
+      @show()
 
-  attach: ->
+  hide: ->
+    @panel?.hide()
+
+  show: ->
+    @panel ?= atom.workspace.addModalPanel(item: this)
+    @panel.show()
     projects = []
     currentProjects = CSON.readFileSync(@projectManager.file())
     for title, project of currentProjects
-      projects.push(project)
+      if project.template?
+        project = _.deepExtend(project, currentProjects[project.template])
+      projects.push(project) if project.paths?
 
-    if atom.config.get('project-manager.sortByTitle')
-      projects = @sortBy(projects, 'title')
+    sortBy = atom.config.get('project-manager.sortBy')
+    if sortBy isnt 'default'
+      projects = @sortBy(projects, sortBy)
     @setItems(projects)
-
-    atom.workspaceView.append(@)
     @focusFilterEditor()
 
-  viewForItem: ({title, paths, icon}) ->
+  viewForItem: ({title, paths, icon, group, devMode}) ->
     icon = icon or 'icon-chevron-right'
     $$ ->
       @li class: 'two-lines', 'data-project-title': title, =>
-        @div class: "primary-line icon #{icon}", title
-        if atom.config.get('project-manager.showPath')
-          @div class: 'secondary-line no-icon', path for path in paths
+        @div class: 'primary-line', =>
+          @span class: 'project-manager-devmode' if devMode
+          @div class: "icon #{icon}", =>
+            @span title
+            @span class: 'project-manager-list-group', group if group?
 
-  confirmed: (project) ->
-    @cancel()
-    @projectManager.openProject(project)
+        if atom.config.get('project-manager.showPath')
+          for path in paths
+            @div class: 'secondary-line', =>
+              @div class: 'no-icon', path
 
   sortBy: (arr, key) ->
     arr.sort (a, b) ->
-      a[key].toUpperCase() > b[key].toUpperCase()
-
+      (a[key] || '\uffff').toUpperCase() > (b[key] || '\uffff').toUpperCase()

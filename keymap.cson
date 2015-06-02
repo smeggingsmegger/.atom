@@ -16,11 +16,15 @@
 #   'ctrl-P': 'core:move-up'
 #   'ctrl-p': 'core:move-down'
 #
-'.editor':
+'.atom-text-editor':
   'home': 'core:move-to-top'
   'end': 'core:move-to-bottom'
   'pageup': 'core:page-up'
   'pagedown': 'core:page-down'
+  # 'shift-left': 'editor:move-to-beginning-of-word'
+  # 'shift-right': 'editor:move-to-end-of-word'
+  # 'alt-shift-left': 'editor:select-to-beginning-of-word'
+  # 'alt-shift-right': 'editor:select-to-end-of-word'
 
 '.platform-darwin .editor':
   'ctrl-b': 'core:move-left'

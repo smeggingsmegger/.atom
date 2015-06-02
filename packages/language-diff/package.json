@@ -1,6 +1,6 @@
 {
   "name": "language-diff",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Interact with *.diff files",
   "repository": {
@@ -12,16 +12,24 @@
     "atom": ">0.50.0"
   },
   "dependencies": {},
-  "readme": "# language-diff package\n\nConversion of Textmate [`diff` bundle](https://github.com/textmate/diff.tmbundle)\n",
+  "readme": "# language-diff package\n\nConversion of Textmate [`diff` bundle](https://github.com/textmate/diff.tmbundle)\n\nSee [CHANGELOG.md] for details.\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/miketheman/language-diff/issues"
   },
   "homepage": "https://github.com/miketheman/language-diff",
-  "_id": "language-diff@0.2.0",
-  "dist": {
-    "shasum": "2b96d89e2a9ae6b5732edee2caa67dc847e396e2"
-  },
-  "_resolved": "/var/folders/k_/knkglmdx5vl0bhvq450rxg5m0000gp/T/d-11483-5792-a0yf4q/package.tgz",
-  "_from": "/var/folders/k_/knkglmdx5vl0bhvq450rxg5m0000gp/T/d-11483-5792-a0yf4q/package.tgz"
+  "_id": "language-diff@0.3.0",
+  "_shasum": "567a444baf5bd57107da9626028e0398a10559b2",
+  "_resolved": "file:../d-11551-931-ykjkma/package.tgz",
+  "_from": "../d-11551-931-ykjkma/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
 }

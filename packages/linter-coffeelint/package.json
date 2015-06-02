@@ -2,8 +2,8 @@
   "name": "linter-coffeelint",
   "main": "./lib/init",
   "linter-package": true,
-  "activationEvents": [],
-  "version": "0.1.7",
+  "activationCommands": {},
+  "version": "0.3.0",
   "description": "Lint CoffeeScript on the fly, using coffeelint",
   "repository": {
     "type": "git",
@@ -13,19 +13,1513 @@
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {
-    "coffeelint": "~1.5.2"
+  "providedServices": {
+    "linter-plus": {
+      "versions": {
+        "0.1.0": "provideLinter"
+      }
+    }
   },
-  "readme": "linter-coffeelint\n=========================\n\nThis linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [coffeelint](http://www.coffeelint.org/). It will be used with files that have the “CoffeeScript” or “CoffeeScript (literate)” syntax.\n\n## Installation\nLinter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).\n\n### Plugin installation\n```\n$ apm install linter-coffeelint\n```\n\n## Settings\nYou can configure linter-coffeelint by editing ~/.atom/config.cson (choose Open Your Config in Atom menu):\n```\n'linter-coffeelint':\n  'coffeelintExecutablePath': null #coffeelint path. run 'which coffeelint' to find the path to the directory that holds the executable\n```\n\n**Note**: This plugin finds the nearest coffeelint.json file and uses the `-f` command line argument to use that file, so you may not use the `-f` argument in the linter settings.\n\n## Contributing\nIf you would like to contribute enhancements or fixes, please do the following:\n\n1. Fork the plugin repository.\n1. Hack on a separate topic branch created from the latest `master`.\n1. Commit and push the topic branch.\n1. Make a pull request.\n1. welcome to the club\n\nPlease note that modifications should follow these coding guidelines:\n\n- Indent is 2 spaces.\n- Code should pass coffeelint linter.\n- Vertical whitespace helps readability, don’t be afraid to use it.\n\nThank you for helping out!\n\n## Donation\n[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)\n",
+  "dependencies": {
+    "coffeelint": "^1.9.7",
+    "resolve": "^1.1.5"
+  },
+  "readme": "[![Stories in Ready](https://badge.waffle.io/AtomLinter/linter-coffeelint.png?label=ready&title=Ready)](https://waffle.io/AtomLinter/linter-coffeelint)\nlinter-coffeelint\n=========================\n\nThis linter plugin for [Linter](https://github.com/AtomLinter/Linter) provides an interface to [coffeelint](http://www.coffeelint.org/). It will be used with files that have the “CoffeeScript” or “CoffeeScript (literate)” syntax.\n\n## Installation\nLinter package must be installed in order to use this plugin. If Linter is not installed, please follow the instructions [here](https://github.com/AtomLinter/Linter).\n\n### Plugin installation\n```\n$ apm install linter-coffeelint\n```\n\n## Settings\n\nAs of v0.2.0 there is no need to specify a path to coffeelint. If you need to use a specific version you can specify it in your project's `package.json` and `linter-coffeelint` will use that one. This is the same behavior the coffeelint commandline gives you.\n\nYour configuration belongs in your project, not your editor.\nhttps://github.com/clutchski/coffeelint/blob/master/doc/user.md\n\n## Contributing\nIf you would like to contribute enhancements or fixes, please do the following:\n\n1. Fork the plugin repository.\n1. Hack on a separate topic branch created from the latest `master`.\n1. Commit and push the topic branch.\n1. Make a pull request.\n1. welcome to the club\n\nPlease note that modifications should follow these coding guidelines:\n\n- Indent is 2 spaces.\n- Code should pass coffeelint linter.\n- Vertical whitespace helps readability, don’t be afraid to use it.\n\nThank you for helping out!\n\n## Donation\n[![Share the love!](https://chewbacco-stuff.s3.amazonaws.com/donate.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KXUYS4ARNHCN8)\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/AtomLinter/linter-coffeelint/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-coffeelint",
-  "_id": "linter-coffeelint@0.1.7",
-  "dist": {
-    "shasum": "bf84337c6e7b2d34a52eca344d1b3ed3465c8880"
-  },
-  "_resolved": "/var/folders/k_/knkglmdx5vl0bhvq450rxg5m0000gp/T/d-114717-94862-yrjnno/package.tgz",
-  "_from": "/var/folders/k_/knkglmdx5vl0bhvq450rxg5m0000gp/T/d-114717-94862-yrjnno/package.tgz"
+  "_id": "linter-coffeelint@0.3.0",
+  "_shasum": "c07b15efd041b1c804112bedcee1ba831e144a80",
+  "_resolved": "file:../d-11551-931-t9iflq/package.tgz",
+  "_from": "../d-11551-931-t9iflq/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "coffeelint",
+        "version": "1.10.0",
+        "path": "node_modules/coffeelint/lib/coffeelint.js"
+      },
+      {
+        "name": "changelog",
+        "version": "1.0.7",
+        "path": "node_modules/coffeelint/node_modules/changelog/lib/changelog.js"
+      },
+      {
+        "name": "chalk",
+        "version": "0.5.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/index.js"
+      },
+      {
+        "name": "ansi-styles",
+        "version": "1.1.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/ansi-styles/index.js"
+      },
+      {
+        "name": "escape-string-regexp",
+        "version": "1.0.3",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/escape-string-regexp/index.js"
+      },
+      {
+        "name": "has-ansi",
+        "version": "0.1.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/has-ansi/index.js"
+      },
+      {
+        "name": "ansi-regex",
+        "version": "0.2.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/index.js"
+      },
+      {
+        "name": "strip-ansi",
+        "version": "0.3.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/strip-ansi/index.js"
+      },
+      {
+        "name": "ansi-regex",
+        "version": "0.2.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/index.js"
+      },
+      {
+        "name": "supports-color",
+        "version": "0.2.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/supports-color/index.js"
+      },
+      {
+        "name": "cli",
+        "version": "0.6.6",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/cli/cli.js"
+      },
+      {
+        "name": "exit",
+        "version": "0.1.2",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/exit/lib/exit.js"
+      },
+      {
+        "name": "glob",
+        "version": "3.2.11",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/glob.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "minimatch",
+        "version": "0.3.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/minimatch.js"
+      },
+      {
+        "name": "lru-cache",
+        "version": "2.6.4",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js"
+      },
+      {
+        "name": "sigmund",
+        "version": "1.0.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/sigmund/sigmund.js"
+      },
+      {
+        "name": "has-color",
+        "version": "0.1.7",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/has-color/index.js"
+      },
+      {
+        "name": "lodash",
+        "version": "2.4.2",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/lodash/dist/lodash.js"
+      },
+      {
+        "name": "moment",
+        "version": "2.10.3",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/moment/moment.js"
+      },
+      {
+        "name": "q",
+        "version": "1.4.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/q/q.js"
+      },
+      {
+        "name": "request",
+        "version": "2.57.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/index.js"
+      },
+      {
+        "name": "aws-sign2",
+        "version": "0.5.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/aws-sign2/index.js"
+      },
+      {
+        "name": "bl",
+        "version": "0.9.4",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/bl.js"
+      },
+      {
+        "name": "readable-stream",
+        "version": "1.0.33",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/readable.js"
+      },
+      {
+        "name": "core-util-is",
+        "version": "1.0.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/core-util-is/lib/util.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "isarray",
+        "version": "0.0.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/isarray/index.js"
+      },
+      {
+        "name": "string_decoder",
+        "version": "0.10.31",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/string_decoder/index.js"
+      },
+      {
+        "name": "caseless",
+        "version": "0.10.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/caseless/index.js"
+      },
+      {
+        "name": "combined-stream",
+        "version": "1.0.3",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/combined-stream/lib/combined_stream.js"
+      },
+      {
+        "name": "delayed-stream",
+        "version": "1.0.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/combined-stream/node_modules/delayed-stream/lib/delayed_stream.js"
+      },
+      {
+        "name": "forever-agent",
+        "version": "0.6.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/forever-agent/index.js"
+      },
+      {
+        "name": "form-data",
+        "version": "0.2.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/lib/form_data.js"
+      },
+      {
+        "name": "async",
+        "version": "0.9.2",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/async/lib/async.js"
+      },
+      {
+        "name": "combined-stream",
+        "version": "0.0.7",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/combined-stream/lib/combined_stream.js"
+      },
+      {
+        "name": "delayed-stream",
+        "version": "0.0.5",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/lib/delayed_stream.js"
+      },
+      {
+        "name": "har-validator",
+        "version": "1.7.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/index.js"
+      },
+      {
+        "name": "bluebird",
+        "version": "2.9.27",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/bluebird.js"
+      },
+      {
+        "name": "chalk",
+        "version": "1.0.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/index.js"
+      },
+      {
+        "name": "ansi-styles",
+        "version": "2.0.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/ansi-styles/index.js"
+      },
+      {
+        "name": "escape-string-regexp",
+        "version": "1.0.3",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/escape-string-regexp/index.js"
+      },
+      {
+        "name": "has-ansi",
+        "version": "1.0.3",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi/index.js"
+      },
+      {
+        "name": "ansi-regex",
+        "version": "1.1.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/index.js"
+      },
+      {
+        "name": "get-stdin",
+        "version": "4.0.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi/node_modules/get-stdin/index.js"
+      },
+      {
+        "name": "strip-ansi",
+        "version": "2.0.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/strip-ansi/index.js"
+      },
+      {
+        "name": "ansi-regex",
+        "version": "1.1.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/index.js"
+      },
+      {
+        "name": "supports-color",
+        "version": "1.3.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/supports-color/index.js"
+      },
+      {
+        "name": "commander",
+        "version": "2.8.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/commander/index.js"
+      },
+      {
+        "name": "graceful-readlink",
+        "version": "1.0.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/commander/node_modules/graceful-readlink/index.js"
+      },
+      {
+        "name": "is-my-json-valid",
+        "version": "2.12.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/index.js"
+      },
+      {
+        "name": "generate-function",
+        "version": "2.0.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-function/index.js"
+      },
+      {
+        "name": "generate-object-property",
+        "version": "1.2.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-object-property/index.js"
+      },
+      {
+        "name": "is-property",
+        "version": "1.0.2",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-object-property/node_modules/is-property/is-property.js"
+      },
+      {
+        "name": "jsonpointer",
+        "version": "1.1.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/jsonpointer/jsonpointer.js"
+      },
+      {
+        "name": "xtend",
+        "version": "4.0.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/xtend/immutable.js"
+      },
+      {
+        "name": "hawk",
+        "version": "2.3.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/index.js"
+      },
+      {
+        "name": "boom",
+        "version": "2.7.2",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/boom/index.js"
+      },
+      {
+        "name": "cryptiles",
+        "version": "2.0.4",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/cryptiles/index.js"
+      },
+      {
+        "name": "hoek",
+        "version": "2.14.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/hoek/index.js"
+      },
+      {
+        "name": "sntp",
+        "version": "1.0.9",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/sntp/index.js"
+      },
+      {
+        "name": "http-signature",
+        "version": "0.11.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/lib/index.js"
+      },
+      {
+        "name": "asn1",
+        "version": "0.1.11",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/index.js"
+      },
+      {
+        "name": "assert-plus",
+        "version": "0.1.5",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/assert-plus/assert.js"
+      },
+      {
+        "name": "ctype",
+        "version": "0.5.3",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/ctype/ctype.js"
+      },
+      {
+        "name": "isstream",
+        "version": "0.1.2",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/isstream/isstream.js"
+      },
+      {
+        "name": "json-stringify-safe",
+        "version": "5.0.1",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/json-stringify-safe/stringify.js"
+      },
+      {
+        "name": "mime-types",
+        "version": "2.0.12",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/mime-types/index.js"
+      },
+      {
+        "name": "mime-db",
+        "version": "1.10.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/mime-types/node_modules/mime-db/index.js"
+      },
+      {
+        "name": "node-uuid",
+        "version": "1.4.3",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/node-uuid/uuid.js"
+      },
+      {
+        "name": "oauth-sign",
+        "version": "0.8.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/oauth-sign/index.js"
+      },
+      {
+        "name": "qs",
+        "version": "3.1.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/qs/index.js"
+      },
+      {
+        "name": "stringstream",
+        "version": "0.0.4",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/stringstream/stringstream.js"
+      },
+      {
+        "name": "tough-cookie",
+        "version": "1.2.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tough-cookie/lib/cookie.js"
+      },
+      {
+        "name": "tunnel-agent",
+        "version": "0.4.0",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tunnel-agent/index.js"
+      },
+      {
+        "name": "semver",
+        "version": "4.3.5",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/semver/semver.js"
+      },
+      {
+        "name": "wordwrap",
+        "version": "0.0.2",
+        "path": "node_modules/coffeelint/node_modules/changelog/node_modules/wordwrap/index.js"
+      },
+      {
+        "name": "coffee-script",
+        "version": "1.9.3",
+        "path": "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/coffee-script.js"
+      },
+      {
+        "name": "glob",
+        "version": "4.5.3",
+        "path": "node_modules/coffeelint/node_modules/glob/glob.js"
+      },
+      {
+        "name": "inflight",
+        "version": "1.0.4",
+        "path": "node_modules/coffeelint/node_modules/glob/node_modules/inflight/inflight.js"
+      },
+      {
+        "name": "wrappy",
+        "version": "1.0.1",
+        "path": "node_modules/coffeelint/node_modules/glob/node_modules/inflight/node_modules/wrappy/wrappy.js"
+      },
+      {
+        "name": "inherits",
+        "version": "2.0.1",
+        "path": "node_modules/coffeelint/node_modules/glob/node_modules/inherits/inherits.js"
+      },
+      {
+        "name": "minimatch",
+        "version": "2.0.8",
+        "path": "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/minimatch.js"
+      },
+      {
+        "name": "brace-expansion",
+        "version": "1.1.0",
+        "path": "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/index.js"
+      },
+      {
+        "name": "balanced-match",
+        "version": "0.2.0",
+        "path": "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js"
+      },
+      {
+        "name": "concat-map",
+        "version": "0.0.1",
+        "path": "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/index.js"
+      },
+      {
+        "name": "once",
+        "version": "1.3.2",
+        "path": "node_modules/coffeelint/node_modules/glob/node_modules/once/once.js"
+      },
+      {
+        "name": "wrappy",
+        "version": "1.0.1",
+        "path": "node_modules/coffeelint/node_modules/glob/node_modules/once/node_modules/wrappy/wrappy.js"
+      },
+      {
+        "name": "ignore",
+        "version": "2.2.15",
+        "path": "node_modules/coffeelint/node_modules/ignore/index.js"
+      },
+      {
+        "name": "optimist",
+        "version": "0.6.1",
+        "path": "node_modules/coffeelint/node_modules/optimist/index.js"
+      },
+      {
+        "name": "minimist",
+        "version": "0.0.10",
+        "path": "node_modules/coffeelint/node_modules/optimist/node_modules/minimist/index.js"
+      },
+      {
+        "name": "wordwrap",
+        "version": "0.0.3",
+        "path": "node_modules/coffeelint/node_modules/optimist/node_modules/wordwrap/index.js"
+      },
+      {
+        "name": "resolve",
+        "version": "0.6.3",
+        "path": "node_modules/coffeelint/node_modules/resolve/index.js"
+      },
+      {
+        "name": "strip-json-comments",
+        "version": "1.0.2",
+        "path": "node_modules/coffeelint/node_modules/strip-json-comments/strip-json-comments.js"
+      },
+      {
+        "name": "resolve",
+        "version": "1.1.6",
+        "path": "node_modules/resolve/index.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/core.coffee",
+        "lib/init.coffee",
+        "lib/linter-coffeelint.coffee",
+        "lib/plus-linter.coffee",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples/static.coffee",
+        "node_modules/coffeelint/src/ast_linter.coffee",
+        "node_modules/coffeelint/src/base_linter.coffee",
+        "node_modules/coffeelint/src/cache.coffee",
+        "node_modules/coffeelint/src/coffeelint.coffee",
+        "node_modules/coffeelint/src/commandline.coffee",
+        "node_modules/coffeelint/src/configfinder.coffee",
+        "node_modules/coffeelint/src/error_report.coffee",
+        "node_modules/coffeelint/src/htmldoc.coffee",
+        "node_modules/coffeelint/src/lexical_linter.coffee",
+        "node_modules/coffeelint/src/line_linter.coffee",
+        "node_modules/coffeelint/src/reporters/checkstyle.coffee",
+        "node_modules/coffeelint/src/reporters/csv.coffee",
+        "node_modules/coffeelint/src/reporters/default.coffee",
+        "node_modules/coffeelint/src/reporters/jslint.coffee",
+        "node_modules/coffeelint/src/reporters/raw.coffee",
+        "node_modules/coffeelint/src/ruleLoader.coffee",
+        "node_modules/coffeelint/src/rules/arrow_spacing.coffee",
+        "node_modules/coffeelint/src/rules/braces_spacing.coffee",
+        "node_modules/coffeelint/src/rules/camel_case_classes.coffee",
+        "node_modules/coffeelint/src/rules/colon_assignment_spacing.coffee",
+        "node_modules/coffeelint/src/rules/cyclomatic_complexity.coffee",
+        "node_modules/coffeelint/src/rules/duplicate_key.coffee",
+        "node_modules/coffeelint/src/rules/empty_constructor_needs_parens.coffee",
+        "node_modules/coffeelint/src/rules/ensure_comprehensions.coffee",
+        "node_modules/coffeelint/src/rules/eol_last.coffee",
+        "node_modules/coffeelint/src/rules/indentation.coffee",
+        "node_modules/coffeelint/src/rules/line_endings.coffee",
+        "node_modules/coffeelint/src/rules/max_line_length.coffee",
+        "node_modules/coffeelint/src/rules/missing_fat_arrows.coffee",
+        "node_modules/coffeelint/src/rules/newlines_after_classes.coffee",
+        "node_modules/coffeelint/src/rules/no_backticks.coffee",
+        "node_modules/coffeelint/src/rules/no_debugger.coffee",
+        "node_modules/coffeelint/src/rules/no_empty_functions.coffee",
+        "node_modules/coffeelint/src/rules/no_empty_param_list.coffee",
+        "node_modules/coffeelint/src/rules/no_implicit_braces.coffee",
+        "node_modules/coffeelint/src/rules/no_implicit_parens.coffee",
+        "node_modules/coffeelint/src/rules/no_interpolation_in_single_quotes.coffee",
+        "node_modules/coffeelint/src/rules/no_plusplus.coffee",
+        "node_modules/coffeelint/src/rules/no_stand_alone_at.coffee",
+        "node_modules/coffeelint/src/rules/no_tabs.coffee",
+        "node_modules/coffeelint/src/rules/no_this.coffee",
+        "node_modules/coffeelint/src/rules/no_throwing_strings.coffee",
+        "node_modules/coffeelint/src/rules/no_trailing_semicolons.coffee",
+        "node_modules/coffeelint/src/rules/no_trailing_whitespace.coffee",
+        "node_modules/coffeelint/src/rules/no_unnecessary_double_quotes.coffee",
+        "node_modules/coffeelint/src/rules/no_unnecessary_fat_arrows.coffee",
+        "node_modules/coffeelint/src/rules/non_empty_constructor_needs_parens.coffee",
+        "node_modules/coffeelint/src/rules/prefer_english_operator.coffee",
+        "node_modules/coffeelint/src/rules/space_operators.coffee",
+        "node_modules/coffeelint/src/rules/spacing_after_comma.coffee",
+        "node_modules/coffeelint/src/rules/transform_messes_up_line_numbers.coffee",
+        "node_modules/coffeelint/src/rules.coffee",
+        "node_modules/coffeelint/tmp.coffee"
+      ],
+      ".json": [
+        "node_modules/coffeelint/.package.json",
+        "node_modules/coffeelint/coffeelint.json",
+        "node_modules/coffeelint/full_config.json",
+        "node_modules/coffeelint/generated_coffeelint.json",
+        "node_modules/coffeelint/node_modules/changelog/examples/node.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/ansi-styles/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/escape-string-regexp/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/has-ansi/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/strip-ansi/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/supports-color/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/exit/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/inherits/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/sigmund/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/has-color/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/lodash/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/q/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/aws-sign2/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/core-util-is/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/inherits/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/isarray/component.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/isarray/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/string_decoder/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/caseless/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/combined-stream/node_modules/delayed-stream/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/combined-stream/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/forever-agent/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/async/bower.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/async/component.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/async/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/combined-stream/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/ansi-styles/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/escape-string-regexp/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi/node_modules/get-stdin/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/strip-ansi/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/supports-color/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/commander/node_modules/graceful-readlink/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/commander/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-function/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-object-property/node_modules/is-property/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-object-property/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/jsonpointer/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/xtend/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/cache.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/cacheEntry.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/content.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/cookie.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/creator.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/entry.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/har.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/log.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/page.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/pageTimings.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/postData.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/record.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/request.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/response.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/timings.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/bower.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/component.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/boom/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/cryptiles/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/hoek/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/sntp/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/asn1/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/assert-plus/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/ctype/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/isstream/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/json-stringify-safe/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/mime-types/node_modules/mime-db/db.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/mime-types/node_modules/mime-db/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/mime-types/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/node-uuid/bower.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/node-uuid/component.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/node-uuid/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/oauth-sign/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/qs/bower.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/qs/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/stringstream/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tough-cookie/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tunnel-agent/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/.nyc_output/82837.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/.nyc_output/82839.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/.nyc_output/82841.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/.nyc_output/82843.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/.nyc_output/82845.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/.nyc_output/82847.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/.nyc_output/82849.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/.nyc_output/82851.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/.nyc_output/82853.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/package.json",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/wordwrap/package.json",
+        "node_modules/coffeelint/node_modules/changelog/package.json",
+        "node_modules/coffeelint/node_modules/coffee-script/bower.json",
+        "node_modules/coffeelint/node_modules/coffee-script/package.json",
+        "node_modules/coffeelint/node_modules/glob/node_modules/inflight/node_modules/wrappy/package.json",
+        "node_modules/coffeelint/node_modules/glob/node_modules/inflight/package.json",
+        "node_modules/coffeelint/node_modules/glob/node_modules/inherits/package.json",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/package.json",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/package.json",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/package.json",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/package.json",
+        "node_modules/coffeelint/node_modules/glob/node_modules/once/node_modules/wrappy/package.json",
+        "node_modules/coffeelint/node_modules/glob/node_modules/once/package.json",
+        "node_modules/coffeelint/node_modules/glob/package.json",
+        "node_modules/coffeelint/node_modules/ignore/package.json",
+        "node_modules/coffeelint/node_modules/optimist/node_modules/minimist/package.json",
+        "node_modules/coffeelint/node_modules/optimist/node_modules/wordwrap/package.json",
+        "node_modules/coffeelint/node_modules/optimist/package.json",
+        "node_modules/coffeelint/node_modules/resolve/lib/core.json",
+        "node_modules/coffeelint/node_modules/resolve/package.json",
+        "node_modules/coffeelint/node_modules/strip-json-comments/package.json",
+        "node_modules/coffeelint/package.json",
+        "node_modules/resolve/lib/core.json",
+        "node_modules/resolve/package.json",
+        "package.json"
+      ],
+      ".js": [
+        "node_modules/coffeelint/lib/cache.js",
+        "node_modules/coffeelint/lib/coffeelint.js",
+        "node_modules/coffeelint/lib/commandline.js",
+        "node_modules/coffeelint/lib/configfinder.js",
+        "node_modules/coffeelint/lib/reporters/checkstyle.js",
+        "node_modules/coffeelint/lib/reporters/csv.js",
+        "node_modules/coffeelint/lib/reporters/default.js",
+        "node_modules/coffeelint/lib/reporters/jslint.js",
+        "node_modules/coffeelint/lib/reporters/raw.js",
+        "node_modules/coffeelint/lib/ruleLoader.js",
+        "node_modules/coffeelint/node_modules/changelog/Gruntfile.js",
+        "node_modules/coffeelint/node_modules/changelog/bin/changelog.js",
+        "node_modules/coffeelint/node_modules/changelog/lib/changelog.js",
+        "node_modules/coffeelint/node_modules/changelog/lib/cli.js",
+        "node_modules/coffeelint/node_modules/changelog/lib/datasrc/github.js",
+        "node_modules/coffeelint/node_modules/changelog/lib/datasrc/npm.js",
+        "node_modules/coffeelint/node_modules/changelog/lib/log.js",
+        "node_modules/coffeelint/node_modules/changelog/lib/output/markdown.js",
+        "node_modules/coffeelint/node_modules/changelog/lib/output/terminal.js",
+        "node_modules/coffeelint/node_modules/changelog/lib/util/bullet.js",
+        "node_modules/coffeelint/node_modules/changelog/lib/util/userAgent.js",
+        "node_modules/coffeelint/node_modules/changelog/lib/util/versionFilter.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/ansi-styles/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/escape-string-regexp/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/has-ansi/cli.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/has-ansi/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/strip-ansi/cli.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/strip-ansi/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/supports-color/cli.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/supports-color/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/cli.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples/cat.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples/command.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples/echo.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples/glob.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples/long_desc.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples/progress.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples/sort.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples/spinner.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples/static.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/exit/Gruntfile.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/exit/lib/exit.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/examples/g.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/examples/usr-local.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/glob.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/inherits/inherits.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/inherits/inherits_browser.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/inherits/test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/minimatch.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/lru-cache/lib/lru-cache.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/sigmund/bench.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/node_modules/sigmund/sigmund.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/progress.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/cli/spinner.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/has-color/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/lodash/dist/lodash.compat.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/lodash/dist/lodash.compat.min.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/lodash/dist/lodash.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/lodash/dist/lodash.min.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/lodash/dist/lodash.underscore.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/lodash/dist/lodash.underscore.min.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/lodash/lodash.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/ender.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/af.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ar-ma.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ar-sa.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ar-tn.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ar.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/az.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/be.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/bg.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/bn.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/bo.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/br.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/bs.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ca.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/cs.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/cv.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/cy.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/da.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/de-at.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/de.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/el.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/en-au.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/en-ca.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/en-gb.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/eo.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/es.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/et.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/eu.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/fa.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/fi.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/fo.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/fr-ca.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/fr.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/fy.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/gl.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/he.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/hi.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/hr.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/hu.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/hy-am.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/id.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/is.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/it.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ja.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/jv.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ka.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/km.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ko.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/lb.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/lt.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/lv.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/me.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/mk.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ml.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/mr.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ms-my.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/my.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/nb.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ne.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/nl.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/nn.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/pl.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/pt-br.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/pt.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ro.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ru.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/si.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/sk.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/sl.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/sq.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/sr-cyrl.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/sr.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/sv.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/ta.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/th.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/tl-ph.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/tr.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/tzm-latn.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/tzm.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/uk.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/uz.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/vi.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/zh-cn.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/locale/zh-tw.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/min/locales.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/min/locales.min.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/min/moment-with-locales.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/min/moment-with-locales.min.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/min/moment.min.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/min/tests.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/moment.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/moment/package.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/q/q.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/q/queue.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib/auth.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib/cookies.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib/copy.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib/getProxyFromURI.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib/har.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib/helpers.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib/multipart.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib/oauth.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib/querystring.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib/redirect.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/aws-sign2/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/bl.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/duplex.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/lib/_stream_duplex.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/lib/_stream_passthrough.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/lib/_stream_readable.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/lib/_stream_transform.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/lib/_stream_writable.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/core-util-is/lib/util.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/core-util-is/util.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/inherits/inherits.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/inherits/inherits_browser.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/inherits/test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/isarray/build/build.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/isarray/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/node_modules/string_decoder/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/passthrough.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/readable.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/transform.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/writable.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/caseless/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/caseless/test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/combined-stream/lib/combined_stream.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/combined-stream/node_modules/delayed-stream/lib/delayed_stream.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/forever-agent/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/lib/form_data.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/async/lib/async.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/async/support/sync-package-managers.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/combined-stream/lib/combined_stream.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/lib/delayed_stream.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/browser/bluebird.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/browser/bluebird.min.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/any.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/assert.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/async.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/bind.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/bluebird.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/call_get.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/cancel.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/captured_trace.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/catch_filter.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/context.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/debuggability.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/direct_resolve.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/each.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/errors.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/es5.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/filter.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/finally.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/generators.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/join.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/map.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/method.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/nodeify.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/progress.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/promise.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/promise_array.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/promise_resolver.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/promisify.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/props.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/queue.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/race.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/reduce.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/schedule.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/settle.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/some.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/synchronous_inspection.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/thenables.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/timers.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/using.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/bluebird/js/main/util.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/ansi-styles/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/escape-string-regexp/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi/cli.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi/node_modules/ansi-regex/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi/node_modules/get-stdin/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/strip-ansi/cli.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/strip-ansi/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/strip-ansi/node_modules/ansi-regex/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/supports-color/cli.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/supports-color/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/commander/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/commander/node_modules/graceful-readlink/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/example.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/formats.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-function/example.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-function/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-function/test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-object-property/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-object-property/node_modules/is-property/is-property.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-object-property/test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/jsonpointer/jsonpointer.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/jsonpointer/test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/xtend/immutable.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/xtend/mutable.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/xtend/test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/require.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/error.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/example/usage.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/lib/browser.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/lib/client.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/lib/crypto.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/lib/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/lib/server.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/lib/utils.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/boom/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/boom/lib/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/cryptiles/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/cryptiles/lib/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/hoek/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/hoek/lib/escape.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/hoek/lib/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/sntp/examples/offset.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/sntp/examples/time.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/sntp/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/sntp/lib/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/lib/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/lib/parser.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/lib/signer.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/lib/util.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/lib/verify.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/ber/errors.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/ber/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/ber/reader.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/ber/types.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/ber/writer.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/asn1/lib/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/asn1/tst/ber/reader.test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/asn1/tst/ber/writer.test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/assert-plus/assert.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/ctype/ctf.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/ctype/ctio.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/node_modules/ctype/ctype.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/isstream/isstream.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/isstream/test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/json-stringify-safe/stringify.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/mime-types/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/mime-types/node_modules/mime-db/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/node-uuid/benchmark/benchmark.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/node-uuid/uuid.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/oauth-sign/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/oauth-sign/test.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/qs/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/qs/lib/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/qs/lib/parse.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/qs/lib/stringify.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/qs/lib/utils.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/stringstream/example.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/stringstream/stringstream.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tough-cookie/generate-pubsuffix.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tough-cookie/lib/cookie.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tough-cookie/lib/memstore.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tough-cookie/lib/pathMatch.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tough-cookie/lib/permuteDomain.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tough-cookie/lib/pubsuffix.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tough-cookie/lib/store.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/tunnel-agent/index.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/request/request.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/coverage/lcov-report/prettify.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/coverage/lcov-report/sorter.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/semver.browser.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/semver.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/semver/semver.min.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/wordwrap/example/center.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/wordwrap/example/meat.js",
+        "node_modules/coffeelint/node_modules/changelog/node_modules/wordwrap/index.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/browser.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/cake.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/coffee-script.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/command.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/grammar.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/helpers.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/index.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/lexer.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/nodes.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/optparse.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/parser.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/register.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/repl.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/rewriter.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/scope.js",
+        "node_modules/coffeelint/node_modules/coffee-script/lib/coffee-script/sourcemap.js",
+        "node_modules/coffeelint/node_modules/coffee-script/register.js",
+        "node_modules/coffeelint/node_modules/coffee-script/repl.js",
+        "node_modules/coffeelint/node_modules/glob/common.js",
+        "node_modules/coffeelint/node_modules/glob/glob.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/inflight/inflight.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/inflight/node_modules/wrappy/wrappy.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/inflight/test.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/inherits/inherits.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/inherits/inherits_browser.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/inherits/test.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/browser.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/minimatch.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/example.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/index.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/example.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/balanced-match/index.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/example/map.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/node_modules/concat-map/index.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/once/node_modules/wrappy/wrappy.js",
+        "node_modules/coffeelint/node_modules/glob/node_modules/once/once.js",
+        "node_modules/coffeelint/node_modules/glob/sync.js",
+        "node_modules/coffeelint/node_modules/ignore/index.js",
+        "node_modules/coffeelint/node_modules/optimist/example/bool.js",
+        "node_modules/coffeelint/node_modules/optimist/example/boolean_double.js",
+        "node_modules/coffeelint/node_modules/optimist/example/boolean_single.js",
+        "node_modules/coffeelint/node_modules/optimist/example/default_hash.js",
+        "node_modules/coffeelint/node_modules/optimist/example/default_singles.js",
+        "node_modules/coffeelint/node_modules/optimist/example/divide.js",
+        "node_modules/coffeelint/node_modules/optimist/example/line_count.js",
+        "node_modules/coffeelint/node_modules/optimist/example/line_count_options.js",
+        "node_modules/coffeelint/node_modules/optimist/example/line_count_wrap.js",
+        "node_modules/coffeelint/node_modules/optimist/example/nonopt.js",
+        "node_modules/coffeelint/node_modules/optimist/example/reflect.js",
+        "node_modules/coffeelint/node_modules/optimist/example/short.js",
+        "node_modules/coffeelint/node_modules/optimist/example/string.js",
+        "node_modules/coffeelint/node_modules/optimist/example/usage-options.js",
+        "node_modules/coffeelint/node_modules/optimist/example/xup.js",
+        "node_modules/coffeelint/node_modules/optimist/index.js",
+        "node_modules/coffeelint/node_modules/optimist/node_modules/minimist/example/parse.js",
+        "node_modules/coffeelint/node_modules/optimist/node_modules/minimist/index.js",
+        "node_modules/coffeelint/node_modules/optimist/node_modules/wordwrap/example/center.js",
+        "node_modules/coffeelint/node_modules/optimist/node_modules/wordwrap/example/meat.js",
+        "node_modules/coffeelint/node_modules/optimist/node_modules/wordwrap/index.js",
+        "node_modules/coffeelint/node_modules/resolve/example/async.js",
+        "node_modules/coffeelint/node_modules/resolve/example/sync.js",
+        "node_modules/coffeelint/node_modules/resolve/index.js",
+        "node_modules/coffeelint/node_modules/resolve/lib/async.js",
+        "node_modules/coffeelint/node_modules/resolve/lib/caller.js",
+        "node_modules/coffeelint/node_modules/resolve/lib/core.js",
+        "node_modules/coffeelint/node_modules/resolve/lib/node-modules-paths.js",
+        "node_modules/coffeelint/node_modules/resolve/lib/sync.js",
+        "node_modules/coffeelint/node_modules/strip-json-comments/cli.js",
+        "node_modules/coffeelint/node_modules/strip-json-comments/strip-json-comments.js",
+        "node_modules/coffeelint/vowsrunner.js",
+        "node_modules/resolve/example/async.js",
+        "node_modules/resolve/example/sync.js",
+        "node_modules/resolve/index.js",
+        "node_modules/resolve/lib/async.js",
+        "node_modules/resolve/lib/caller.js",
+        "node_modules/resolve/lib/core.js",
+        "node_modules/resolve/lib/node-modules-paths.js",
+        "node_modules/resolve/lib/sync.js"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          ""
+        ],
+        "dependencies": {
+          "coffeelint": "^1.9.7",
+          "resolve": "^1.1.5"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint",
+          "node_modules/coffeelint/lib",
+          "node_modules/coffeelint/lib/reporters",
+          "node_modules/coffeelint/src",
+          "node_modules/coffeelint/src/reporters",
+          "node_modules/coffeelint/src/rules"
+        ],
+        "dependencies": {
+          "coffee-script": "^1.9.1",
+          "glob": "^4.0.0",
+          "ignore": "^2.2.15",
+          "optimist": "^0.6.1",
+          "resolve": "^0.6.3",
+          "strip-json-comments": "^1.0.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog",
+          "node_modules/coffeelint/node_modules/changelog/bin",
+          "node_modules/coffeelint/node_modules/changelog/examples",
+          "node_modules/coffeelint/node_modules/changelog/lib",
+          "node_modules/coffeelint/node_modules/changelog/lib/datasrc",
+          "node_modules/coffeelint/node_modules/changelog/lib/output",
+          "node_modules/coffeelint/node_modules/changelog/lib/util",
+          "node_modules/coffeelint/node_modules/changelog/test",
+          "node_modules/coffeelint/node_modules/changelog/test/fixtures"
+        ],
+        "dependencies": {
+          "chalk": "^0.5.1",
+          "cli": "^0.6.4",
+          "has-color": "^0.1.1",
+          "lodash": "^2.4.1",
+          "moment": "^2.5.0",
+          "q": "^1.0.1",
+          "request": "^2.34.0",
+          "semver": "^4.0.3",
+          "wordwrap": "^0.0.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/chalk"
+        ],
+        "dependencies": {
+          "ansi-styles": "^1.1.0",
+          "escape-string-regexp": "^1.0.0",
+          "has-ansi": "^0.1.0",
+          "strip-ansi": "^0.3.0",
+          "supports-color": "^0.2.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/has-ansi"
+        ],
+        "dependencies": {
+          "ansi-regex": "^0.2.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/chalk/node_modules/strip-ansi"
+        ],
+        "dependencies": {
+          "ansi-regex": "^0.2.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/cli",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/cli/examples"
+        ],
+        "dependencies": {
+          "glob": "~ 3.2.1",
+          "exit": "0.1.2"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/examples",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/test"
+        ],
+        "dependencies": {
+          "inherits": "2",
+          "minimatch": "0.3"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/cli/node_modules/glob/node_modules/minimatch/test"
+        ],
+        "dependencies": {
+          "lru-cache": "2",
+          "sigmund": "~1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/lib"
+        ],
+        "dependencies": {
+          "bl": "~0.9.0",
+          "caseless": "~0.10.0",
+          "forever-agent": "~0.6.0",
+          "form-data": "~0.2.0",
+          "json-stringify-safe": "~5.0.0",
+          "mime-types": "~2.0.1",
+          "node-uuid": "~1.4.0",
+          "qs": "~3.1.0",
+          "tunnel-agent": "~0.4.0",
+          "tough-cookie": ">=0.12.0",
+          "http-signature": "~0.11.0",
+          "oauth-sign": "~0.8.0",
+          "hawk": "~2.3.0",
+          "aws-sign2": "~0.5.0",
+          "stringstream": "~0.0.4",
+          "combined-stream": "~1.0.1",
+          "isstream": "~0.1.1",
+          "har-validator": "^1.6.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/test"
+        ],
+        "dependencies": {
+          "readable-stream": "~1.0.26"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/bl/node_modules/readable-stream/lib"
+        ],
+        "dependencies": {
+          "core-util-is": "~1.0.0",
+          "isarray": "0.0.1",
+          "string_decoder": "~0.10.x",
+          "inherits": "~2.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/combined-stream/lib",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/combined-stream"
+        ],
+        "dependencies": {
+          "delayed-stream": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/lib",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data"
+        ],
+        "dependencies": {
+          "async": "~0.9.0",
+          "combined-stream": "~0.0.4",
+          "mime-types": "~2.0.3"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/combined-stream/lib",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/form-data/node_modules/combined-stream"
+        ],
+        "dependencies": {
+          "delayed-stream": "0.0.5"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/src/schemas"
+        ],
+        "dependencies": {
+          "bluebird": "^2.9.26",
+          "chalk": "^1.0.0",
+          "commander": "^2.8.1",
+          "is-my-json-valid": "^2.12.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk"
+        ],
+        "dependencies": {
+          "ansi-styles": "^2.0.1",
+          "escape-string-regexp": "^1.0.2",
+          "has-ansi": "^1.0.3",
+          "strip-ansi": "^2.0.1",
+          "supports-color": "^1.3.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/has-ansi"
+        ],
+        "dependencies": {
+          "ansi-regex": "^1.1.0",
+          "get-stdin": "^4.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/chalk/node_modules/strip-ansi"
+        ],
+        "dependencies": {
+          "ansi-regex": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/commander"
+        ],
+        "dependencies": {
+          "graceful-readlink": ">= 1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/test/fixtures",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/test/json-schema-draft4",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/test"
+        ],
+        "dependencies": {
+          "generate-function": "^2.0.0",
+          "generate-object-property": "^1.1.0",
+          "jsonpointer": "^1.1.0",
+          "xtend": "^4.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/har-validator/node_modules/is-my-json-valid/node_modules/generate-object-property"
+        ],
+        "dependencies": {
+          "is-property": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/example",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/lib",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/test"
+        ],
+        "dependencies": {
+          "hoek": "2.x.x",
+          "boom": "2.x.x",
+          "cryptiles": "2.x.x",
+          "sntp": "1.x.x"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/boom",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/boom/lib",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/boom/test"
+        ],
+        "dependencies": {
+          "hoek": "2.x.x"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/cryptiles",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/cryptiles/lib",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/cryptiles/test"
+        ],
+        "dependencies": {
+          "boom": "2.x.x"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/sntp/examples",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/sntp",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/sntp/lib",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/hawk/node_modules/sntp/test"
+        ],
+        "dependencies": {
+          "hoek": "2.x.x"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature/lib",
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/http-signature"
+        ],
+        "dependencies": {
+          "assert-plus": "^0.1.5",
+          "asn1": "0.1.11",
+          "ctype": "0.5.3"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/changelog/node_modules/request/node_modules/mime-types"
+        ],
+        "dependencies": {
+          "mime-db": "~1.10.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/glob"
+        ],
+        "dependencies": {
+          "inflight": "^1.0.4",
+          "inherits": "2",
+          "minimatch": "^2.0.1",
+          "once": "^1.3.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/glob/node_modules/inflight"
+        ],
+        "dependencies": {
+          "once": "^1.3.0",
+          "wrappy": "1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/glob/node_modules/minimatch"
+        ],
+        "dependencies": {
+          "brace-expansion": "^1.0.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion",
+          "node_modules/coffeelint/node_modules/glob/node_modules/minimatch/node_modules/brace-expansion/test"
+        ],
+        "dependencies": {
+          "balanced-match": "^0.2.0",
+          "concat-map": "0.0.1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/glob/node_modules/once",
+          "node_modules/coffeelint/node_modules/glob/node_modules/once/test"
+        ],
+        "dependencies": {
+          "wrappy": "1"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/coffeelint/node_modules/optimist/example",
+          "node_modules/coffeelint/node_modules/optimist",
+          "node_modules/coffeelint/node_modules/optimist/test/_",
+          "node_modules/coffeelint/node_modules/optimist/test"
+        ],
+        "dependencies": {
+          "wordwrap": "~0.0.2",
+          "minimist": "~0.0.1"
+        }
+      }
+    ]
+  }
 }

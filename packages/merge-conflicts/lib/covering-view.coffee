@@ -1,17 +1,35 @@
-{EditorView, View, $} = require 'atom'
+{CompositeDisposable} = require 'atom'
+{View, $} = require 'space-pen'
 _ = require 'underscore-plus'
-{EditorAdapter} = require './editor-adapter'
 
 
 class CoveringView extends View
 
-  initialize: (@editorView) ->
-    @adapter = EditorAdapter.adapt(@editorView)
+  initialize: (@editor) ->
+    @coverSubs = new CompositeDisposable
+    @overlay = @editor.decorateMarker @cover(),
+      type: 'overlay',
+      item: this,
+      position: 'tail'
 
-    @adapter.append(this)
-    @reposition()
+    @coverSubs.add @editor.onDidDestroy => @cleanup()
 
-    @cover().on "changed", => @reposition()
+  attached: ->
+    rightPosition = if @editor.verticallyScrollable()
+        @editor.getVerticalScrollbarWidth()
+      else
+        0
+
+    @parent().css right: rightPosition
+
+    @css 'margin-top': -@editor.getLineHeightInPixels()
+    @height @editor.getLineHeightInPixels()
+
+  cleanup: ->
+    @coverSubs.dispose()
+
+    @overlay?.destroy()
+    @overlay = null
 
   # Override to specify the marker of the first line that should be covered.
   cover: -> null
@@ -29,35 +47,19 @@ class CoveringView extends View
 
   getModel: -> null
 
-  reposition: ->
-    marker = @cover()
-    anchor = @adapter.linesElement().offset()
-    ref = @offsetForMarker marker
-
-    @offset top: ref.top + anchor.top
-    @height @editorView.lineHeight
-
-  editor: -> @editorView.getEditor()
-
-  buffer: -> @editor().getBuffer()
+  buffer: -> @editor.getBuffer()
 
   includesCursor: (cursor) -> false
-
-  offsetForMarker: (marker) ->
-    position = marker.getTailBufferPosition()
-    @editorView.pixelPositionForBufferPosition position
 
   deleteMarker: (marker) ->
     @buffer().delete marker.getBufferRange()
     marker.destroy()
 
   scrollTo: (positionOrNull) ->
-    @editor().setCursorBufferPosition positionOrNull if positionOrNull?
+    @editor.setCursorBufferPosition positionOrNull if positionOrNull?
 
   prependKeystroke: (eventName, element) ->
-    bindings = atom.keymap.findKeyBindings
-      target: @editorView[0]
-      command: eventName
+    bindings = atom.keymaps.findKeyBindings command: eventName
 
     for e in bindings
       original = element.text()

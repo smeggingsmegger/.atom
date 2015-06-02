@@ -1,9 +1,8 @@
 {
   "name": "linter-shellcheck",
   "linter-package": true,
-  "activationEvents": [],
   "main": "./lib/init",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Lint Bash on the fly, using shellcheck",
   "repository": {
     "type": "git",
@@ -20,10 +19,22 @@
     "url": "https://github.com/AtomLinter/linter-shellcheck/issues"
   },
   "homepage": "https://github.com/AtomLinter/linter-shellcheck",
-  "_id": "linter-shellcheck@0.0.6",
-  "dist": {
-    "shasum": "eb751a3af64109518b0fc0d1dd70bd6f1ada2bbd"
-  },
-  "_resolved": "/var/folders/k_/knkglmdx5vl0bhvq450rxg5m0000gp/T/d-114713-35566-c8vcmx/package.tgz",
-  "_from": "/var/folders/k_/knkglmdx5vl0bhvq450rxg5m0000gp/T/d-114713-35566-c8vcmx/package.tgz"
+  "_id": "linter-shellcheck@0.0.8",
+  "_shasum": "4412229c141cba38ea0c70044093be2f73640742",
+  "_resolved": "file:../d-11551-931-1nsk042/package.tgz",
+  "_from": "../d-11551-931-1nsk042/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".coffee": [
+        "lib/init.coffee",
+        "lib/linter-shellcheck.coffee"
+      ],
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
 }
